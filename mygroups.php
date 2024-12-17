@@ -11,7 +11,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 $user_groups_query = "
     SELECT gi.groupID, gi.groupName, gi.groupDescription, gi.numLimit,
            (SELECT COUNT(*) FROM isAmember WHERE groupId = gi.groupID) as member_count
-    FROM groupInfo gi
+    FROM groupinfo gi
     JOIN isAmember ia ON gi.groupID = ia.groupId
     WHERE ia.memberId = ?
 ";

@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error_message = "Group description must not exceed 50 characters.";
         } else {
             // Insert group into the database
-            $query = "INSERT INTO groupInfo (groupName, numLimit, groupDescription, dateCreated) 
+            $query = "INSERT INTO groupinfo (groupName, numLimit, groupDescription, dateCreated) 
                       VALUES (?, ?, ?, NOW())";
             $stmt = $conn->prepare($query);
             $stmt->bind_param("sis", $groupName, $maxMembers, $description);

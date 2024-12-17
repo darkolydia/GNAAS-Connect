@@ -29,16 +29,16 @@ if ($user_result->num_rows > 0) {
 }
 
 // Default query for groups
-$groups_query = "SELECT groupName, groupID FROM groupInfo";
+$groups_query = "SELECT groupName, groupID FROM groupinfo";
 $groups_result = $conn->query($groups_query);
 
 // Handle search for Groups
 if (isset($_POST['search_groups'])) {
     $searchTerm = $_POST['group_search'];
     if (!empty($searchTerm)) {
-        // Search both groupName and groupDescription in the groupInfo table
+        // Search both groupName and groupDescription in the groupinfo table
         $searchTerm = "%" . $searchTerm . "%";
-        $groups_query = "SELECT groupName, groupID FROM groupInfo WHERE groupName LIKE ? OR groupDescription LIKE ?";
+        $groups_query = "SELECT groupName, groupID FROM groupinfo WHERE groupName LIKE ? OR groupDescription LIKE ?";
         $stmt = $conn->prepare($groups_query);
         $stmt->bind_param("ss", $searchTerm, $searchTerm);
         $stmt->execute();

@@ -7,7 +7,7 @@ include 'db_connection.php'; // Database connection
 $error_message = '';
 
 // Fetch all available groups
-$group_query = "SELECT * FROM groupInfo";
+$group_query = "SELECT * FROM groupinfo";
 $stmt = $conn->prepare($group_query);
 $stmt->execute();
 $group_result = $stmt->get_result();

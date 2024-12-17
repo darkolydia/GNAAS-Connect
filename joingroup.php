@@ -12,7 +12,7 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 // Fetch all available groups excluding those the user is already a part of
 $group_query = "
     SELECT * 
-    FROM groupInfo 
+    FROM groupinfo 
     WHERE groupID NOT IN (
         SELECT groupID 
         FROM isAmember 
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id) {
     $group_id = $_POST['group_id']; // Get the group ID from the form submission
 
     // Fetch the selected group information
-    $group_details_query = "SELECT * FROM groupInfo WHERE groupID = ?";
+    $group_details_query = "SELECT * FROM groupinfo WHERE groupID = ?";
     $stmt = $conn->prepare($group_details_query);
     $stmt->bind_param("i", $group_id);
     $stmt->execute();
