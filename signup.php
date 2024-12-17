@@ -187,6 +187,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p id="password-error" class="error-message"></p>
                 </div>
                 <button type="submit" class="btn">Sign Up</button>
+
+                <p class="form-footer">Already have an account? <a href="login.php">Login here</a></p>
+
             </form>
         </div>
     </main>
