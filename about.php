@@ -66,28 +66,28 @@
                     <div class="about-icon">🎯</div>
                     <h2>Our Mission</h2>
                     <p>
-                        To enhance student collaboration by providing a platform where they can create and join study groups, manage schedules, and participate in academic events seamlessly.
+                        To enhance student collaboration by providing a platform where they can create and join groups, manage posta, and find friends seamlessly.
                     </p>
                 </div>
                 <div class="about-box">
                     <div class="about-icon">💡</div>
                     <h2>Why Academic Clan?</h2>
                     <p>
-                        Students often face challenges in organizing study groups or keeping track of schedules. Academic Clan simplifies this process by fostering a collaborative learning environment.
+                        Current Ashesi Adventist Students often face challenges in connecting with  keeping track of schedules. GNAAS Connect  simplifies this process by fostering a collaborative development environment.
                     </p>
                 </div>
                 <div class="about-box">
                     <div class="about-icon">⚙️</div>
                     <h2>How It Works</h2>
                     <p>
-                        Academic Clan allows users to create profiles, search for courses, form groups, plan events, and manage their schedules, all in one user-friendly platform.
+                        GNAAS Connect allows users to create profiles, search for groups, form groups, create friends, and manage their posts, all in one user-friendly platform.
                     </p>
                 </div>
                 <div class="about-box">
                     <div class="about-icon">🌍</div>
                     <h2>Join Our Community</h2>
                     <p>
-                        Be part of a growing community of learners dedicated to academic success and collaboration. Together, we achieve more!
+                        Be part of a growing community of Adventist students dedicated to collaborative success. Together, we achieve more!
                     </p>
                 </div>
             </div>
