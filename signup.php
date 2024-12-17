@@ -1,13 +1,8 @@
 <?php
-
-echo "What at alll is wronggggg";
-
-
-<?php
 session_start();
 
 include 'Lnavbar.php';
-// include 'db_connection.php'; // Database connection
+include 'db_connection.php'; // Database connection
 
 // $error_message = '';
 // $success_message = '';
