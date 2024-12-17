@@ -3,7 +3,7 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-include 'navbar.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/GNAAS-Connect/navbar.php';
 include 'db_connection.php'; // Database connection
 
 session_start(); // Start the session
