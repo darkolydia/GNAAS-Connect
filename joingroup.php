@@ -61,9 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id) {
 
             if ($check_result->num_rows === 0) {
                 // Add user to the group
-                $insert_query = "INSERT INTO isamember (groupID, memberId, groupRole, membertype) VALUES (?, ?, 'Member', 'student')";
+                $insert_query = "INSERT INTO isamember (groupID, memberId, groupRole) VALUES (?, ?, 'Member')";
                 $stmt = $conn->prepare($insert_query);
-                $stmt->bind_param("ii", $group_id, $user_id);
+                $stmt->bind_param("is", $group_id, $user_id);
 
                 if ($stmt->execute()) {
                     $success_message = "You have successfully joined the group!";
