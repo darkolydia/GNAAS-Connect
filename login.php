@@ -1,14 +1,13 @@
 <?php
-// Start the session
-session_start();
+include 'navbar.php';
+include 'db_connection.php'; // Database connection
 
-// Include database connection file (you need to create db_connection.php with your DB settings)
-include 'db_connection.php';
+session_start(); // Start the session
 
-$error_message = ''; // Initialize error message
+$error_message = ''; // Error message for login failure
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Check if email and password are provided
+    // Check if the necessary POST fields are set
     if (isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -24,14 +23,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
 
-            // Verify password using password_verify()
+            // Verify password
             if (password_verify($password, $user['passwordHash'])) {
                 // Password is correct, store the user data in session
                 $_SESSION['user_id'] = $user['userID'];
                 $_SESSION['user_name'] = $user['firstName'] . ' ' . $user['lastName'];
 
+                // Debugging: Check if session variables are correctly set
+                // echo "User ID: " . $_SESSION['user_id'];  // Uncomment for debugging
+
                 // Redirect to homepage after successful login
-                header("Location: homepage.php");
+                //header("Location: homepage.php");
                 exit(); // Stop script execution
             } else {
                 $error_message = "Incorrect password.";
@@ -51,96 +53,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | GNAAS Connect</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .error-message {
-            color: red;
-            font-size: 14px;
-        }
-        .form-container {
-            max-width: 400px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 8px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .form-footer a {
-            color: #007bff;
-        }
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="homepagestyle.css">
 </head>
-<body class="bg-light">
-    <main class="form-page d-flex justify-content-center align-items-center vh-100">
+<body>
+    <main class="form-page">
         <div class="form-container">
-            <h2 class="text-center mb-4">Login</h2>
             <?php if (!empty($error_message)): ?>
-                <p class="error-message text-center"><?php echo $error_message; ?></p>
+                <p class="error-message" style="color:red;"><?php echo $error_message; ?></p>
             <?php endif; ?>
             <form id="loginForm" action="login.php" method="post">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Ashesi email" required>
-                    <div id="email-error" class="error-message" style="display:none;"></div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your Ashesi email" required>
+                    <span id="email-error" class="error-message" style="display:none; color:red;"></span>
                 </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                    <div id="password-error" class="error-message" style="display:none;"></div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <span id="password-error" class="error-message" style="display:none; color:red;"></span>
                 </div>
-                <div class="d-flex justify-content-between mb-3">
+                <div class="options">
                     <label><input type="checkbox"> Remember Me</label>
-                    <a href="reset-password.html">Forgot password?</a>
+                    <a href="reset-password.php">Forgot password?</a>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Login</button>
-                <p class="form-footer text-center mt-3">Don't have an account? <a href="signup.html">Register here</a></p>
+                <button type="submit" class="btn">Login</button>
+                <p class="form-footer">Don't have an account? <a href="signup.php">Register here</a></p>
             </form>
         </div>
     </main>
-
-    <!-- Bootstrap 5 JS and Popper.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-
-    <script>
-        function validateForm(event) {
-            event.preventDefault();
-            
-            // Get form inputs
-            const email = document.getElementById('email');
-            const password = document.getElementById('password');
-            let isValid = true;
-
-            // Email validation
-            const emailError = document.getElementById('email-error');
-            const emailPattern = /^[a-z0-9._]+@ashesi\.edu\.gh$/;
-            if (!emailPattern.test(email.value)) {
-                emailError.textContent = 'Please enter a valid Ashesi email address.';
-                emailError.style.display = 'block';
-                isValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            // Password validation
-            const passwordError = document.getElementById('password-error');
-            if (password.value.length < 8) {
-                passwordError.textContent = 'Password must be at least 8 characters long.';
-                passwordError.style.display = 'block';
-                isValid = false;
-            } else {
-                passwordError.style.display = 'none';
-            }
-
-            // Submit the form if valid
-            if (isValid) {
-                document.getElementById('loginForm').submit();
-            }
-        }
-    </script>
 </body>
 </html>
+
+
+
