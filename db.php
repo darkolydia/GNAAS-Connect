@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
-$username = 'lydia.amoakoaa';
-$password = '23Jan31Dec.';
-$dbname = 'webtech_fall2024_lydia_amoakoaa';
+$username = 'root';
+$password = '';
+$dbname = 'agc2026';
 
 $conn = new mysqli($host, $username, $password, $dbname);
 
