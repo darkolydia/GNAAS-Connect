@@ -1,4 +1,8 @@
 <?php
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 include 'navbar.php';
 include 'db_connection.php'; // Database connection
 
