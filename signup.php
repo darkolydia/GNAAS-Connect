@@ -7,54 +7,54 @@ echo "What at alll is wronggggg";
 session_start();
 
 include 'Lnavbar.php';
-include 'db_connection.php'; // Database connection
+// include 'db_connection.php'; // Database connection
 
-$error_message = '';
-$success_message = '';
+// $error_message = '';
+// $success_message = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $studentID = $_POST['studentID'];
-    $firstName = $_POST['first-name'];
-    $lastName = $_POST['last-name'];
-    $gender = $_POST['gender'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $profilePicture = $_POST['profilePicture'];
-    $bio = $_POST['bio'];
+// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+//     $studentID = $_POST['studentID'];
+//     $firstName = $_POST['first-name'];
+//     $lastName = $_POST['last-name'];
+//     $gender = $_POST['gender'];
+//     $email = $_POST['email'];
+//     $password = $_POST['password'];
+//     $profilePicture = $_POST['profilePicture'];
+//     $bio = $_POST['bio'];
 
-    // Validate inputs server-side
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !str_ends_with($email, '@ashesi.edu.gh')) {
-        $error_message = 'Please enter a valid Ashesi email address.';
-    } else if (strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/\d{3,}/', $password) || !preg_match('/[@#$%^&+=!]/', $password)) {
-        $error_message = 'Password must be at least 8 characters, contain an uppercase letter, three digits, and a special character.';
-    } else {
-        // Check if email already exists
-        $query = "SELECT * FROM users WHERE email = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+//     // Validate inputs server-side
+//     if (!filter_var($email, FILTER_VALIDATE_EMAIL) || !str_ends_with($email, '@ashesi.edu.gh')) {
+//         $error_message = 'Please enter a valid Ashesi email address.';
+//     } else if (strlen($password) < 8 || !preg_match('/[A-Z]/', $password) || !preg_match('/\d{3,}/', $password) || !preg_match('/[@#$%^&+=!]/', $password)) {
+//         $error_message = 'Password must be at least 8 characters, contain an uppercase letter, three digits, and a special character.';
+//     } else {
+//         // Check if email already exists
+//         $query = "SELECT * FROM users WHERE email = ?";
+//         $stmt = $conn->prepare($query);
+//         $stmt->bind_param("s", $email);
+//         $stmt->execute();
+//         $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            $error_message = 'This email is already registered.';
-        } else {
-            // Insert the new user into the database
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $query = "INSERT INTO users (userID, email, passwordHash, firstName, lastName, gender, profilePicture, bio, dateJoined) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("ssssssss", $studentID,  $email, $hashedPassword, $firstName, $lastName, $gender, $profilePicture, $bio);
+//         if ($result->num_rows > 0) {
+//             $error_message = 'This email is already registered.';
+//         } else {
+//             // Insert the new user into the database
+//             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+//             $query = "INSERT INTO users (userID, email, passwordHash, firstName, lastName, gender, profilePicture, bio, dateJoined) VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+//             $stmt = $conn->prepare($query);
+//             $stmt->bind_param("ssssssss", $studentID,  $email, $hashedPassword, $firstName, $lastName, $gender, $profilePicture, $bio);
 
-            if ($stmt->execute()) {
-                // Redirect to homepage after successful login
-                header("Location: login.php");
-                exit(); // Stop script execution
+//             if ($stmt->execute()) {
+//                 // Redirect to homepage after successful login
+//                 header("Location: login.php");
+//                 exit(); // Stop script execution
     
-            } else {
-                $error_message = 'An error occurred. Please try again.';
-            }
-        }
-    }
-}
+//             } else {
+//                 $error_message = 'An error occurred. Please try again.';
+//             }
+//         }
+//     }
+// }
 ?>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
