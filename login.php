@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 include 'Lnavbar.php';
 include 'db_connection.php'; // Database connection
 
+session_start(); // Start the session
 
 $error_message = ''; // Error message for login failure
 
