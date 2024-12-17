@@ -1,56 +1,9 @@
-<?php
-include 'navbar.php';
-include 'db_connection.php'; // Database connection
-
-session_start(); // Start the session
-
-$error_message = ''; // Error message for login failure
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Check if the necessary POST fields are set
-    if (isset($_POST['email']) && isset($_POST['password'])) {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        // Query to find the user with the given email
-        $query = "SELECT userID, firstName, lastName, passwordHash FROM users WHERE email = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-
-        // Check if a user was found with this email
-        if ($result->num_rows > 0) {
-            $user = $result->fetch_assoc();
-
-            // Verify password
-            if (password_verify($password, $user['passwordHash'])) {
-                // Password is correct, store the user data in session
-                $_SESSION['user_id'] = $user['userID'];
-                $_SESSION['user_name'] = $user['firstName'] . ' ' . $user['lastName'];
-
-                // Redirect to homepage after successful login
-                header("Location: homepage.php");
-                exit(); // Stop script execution
-            } else {
-                $error_message = "Incorrect password.";
-            }
-        } else {
-            $error_message = "Email not found.";
-        }
-    } else {
-        $error_message = "Please enter both email and password.";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | GNAAS Connect</title>
-    <link rel="stylesheet" href="homepagestyle.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -134,10 +87,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <main class="form-page">
         <div class="form-container">
-            <?php if (!empty($error_message)): ?>
-                <p class="error-message"><?php echo $error_message; ?></p>
-            <?php endif; ?>
-            <form id="loginForm" action="login.php" method="post">
+            <h2>Login</h2>
+            <form id="loginForm" action="login.php" method="post" onsubmit="return validateForm(event)">
                 <div class="input-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Enter your Ashesi email" required>
@@ -150,12 +101,49 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <div class="options">
                     <label><input type="checkbox"> Remember Me</label>
-                    <a href="reset-password.php">Forgot password?</a>
+                    <a href="reset-password.html">Forgot password?</a>
                 </div>
                 <button type="submit" class="btn">Login</button>
-                <p class="form-footer">Don't have an account? <a href="signup.php">Register here</a></p>
+                <p class="form-footer">Don't have an account? <a href="signup.html">Register here</a></p>
             </form>
         </div>
     </main>
+
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            
+            // Get the form inputs
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            let isValid = true;
+
+            // Email validation
+            const emailError = document.getElementById('email-error');
+            const emailPattern = /^[a-z0-9._]+@ashesi\.edu\.gh$/;
+            if (!emailPattern.test(email.value)) {
+                emailError.textContent = 'Please enter a valid Ashesi email address.';
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+
+            // Password validation
+            const passwordError = document.getElementById('password-error');
+            if (password.value.length < 8) {
+                passwordError.textContent = 'Password must be at least 8 characters long.';
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+
+            // If form is valid, submit it
+            if (isValid) {
+                document.getElementById('loginForm').submit();
+            }
+        }
+    </script>
 </body>
 </html>
