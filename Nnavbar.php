@@ -6,6 +6,9 @@
     <div class="nav-right">
         <a href="about.php" class="nav-link">About</a>
         <a href="contact.php" class="nav-link">Contact</a>
+        <a href="signup.php" class="nav-link">Sign Up</a>
+        <a href="login.php" class="nav-link">Login</a>
+
     </div>
 </nav>
 
