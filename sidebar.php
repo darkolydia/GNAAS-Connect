@@ -1,10 +1,10 @@
 <!-- sidebar.php -->
 <aside class="sidebar">
         <nav class="menu">
-        <a href="homepage.php" class="menu-item active">
+        <a href="homepage.php" class="menu-item ">
             <i class="fas fa-user"></i> Home
         </a>
-        <a href="profilepage.php" class="menu-item active">
+        <a href="profilepage.php" class="menu-item ">
             <i class="fas fa-user"></i> User Profile
         </a>
         <a href="mygroups.php" class="menu-item">
