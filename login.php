@@ -4,116 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | GNAAS Connect</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7fa;
-        }
-        .form-page {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .form-container {
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        .input-group label {
-            display: block;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .input-group input:focus {
-            border-color: #007bff;
-            outline: none;
-        }
-        .options {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #007bff;
-            border: none;
-            border-radius: 4px;
-            color: white;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .form-footer {
-            text-align: center;
-            font-size: 14px;
-        }
-        .form-footer a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        .form-footer a:hover {
-            text-decoration: underline;
-        }
         .error-message {
             color: red;
             font-size: 14px;
         }
+        .form-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-footer a {
+            color: #007bff;
+        }
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
-<body>
-    <main class="form-page">
+<body class="bg-light">
+    <main class="form-page d-flex justify-content-center align-items-center vh-100">
         <div class="form-container">
-            <h2>Login</h2>
+            <h2 class="text-center mb-4">Login</h2>
             <form id="loginForm" action="login.php" method="post" onsubmit="return validateForm(event)">
-                <div class="input-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your Ashesi email" required>
-                    <span id="email-error" class="error-message" style="display:none;"></span>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Ashesi email" required>
+                    <div id="email-error" class="error-message" style="display:none;"></div>
                 </div>
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
-                    <span id="password-error" class="error-message" style="display:none;"></span>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    <div id="password-error" class="error-message" style="display:none;"></div>
                 </div>
-                <div class="options">
+                <div class="d-flex justify-content-between mb-3">
                     <label><input type="checkbox"> Remember Me</label>
                     <a href="reset-password.html">Forgot password?</a>
                 </div>
-                <button type="submit" class="btn">Login</button>
-                <p class="form-footer">Don't have an account? <a href="signup.html">Register here</a></p>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+                <p class="form-footer text-center mt-3">Don't have an account? <a href="signup.html">Register here</a></p>
             </form>
         </div>
     </main>
+
+    <!-- Bootstrap 5 JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
     <script>
         function validateForm(event) {
             event.preventDefault();
             
-            // Get the form inputs
+            // Get form inputs
             const email = document.getElementById('email');
             const password = document.getElementById('password');
             let isValid = true;
@@ -139,7 +86,7 @@
                 passwordError.style.display = 'none';
             }
 
-            // If form is valid, submit it
+            // Submit the form if valid
             if (isValid) {
                 document.getElementById('loginForm').submit();
             }
