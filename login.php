@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // echo "User ID: " . $_SESSION['user_id'];  // Uncomment for debugging
 
                 // Redirect to homepage after successful login
-                //header("Location: homepage.php");
+                header("Location: homepage.php");
                 exit(); // Stop script execution
             } else {
                 $error_message = "Incorrect password.";
