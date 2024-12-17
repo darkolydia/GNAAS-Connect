@@ -1,4 +1,5 @@
-<?php include 'Lnavbar.php'; ?>
+<?php include 'Lnavbar.php';
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">

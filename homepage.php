@@ -1,6 +1,6 @@
 <?php
 include 'navbar.php';
-include 'Sidebar.php';
+include 'sidebar.php';
 include 'db_connection.php'; // Database connection
 session_start();
 
