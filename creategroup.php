@@ -1,5 +1,4 @@
 <?php
-session_start(); // Ensure session is started
 include 'navbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection

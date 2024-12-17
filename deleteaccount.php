@@ -1,6 +1,5 @@
 <?php
 // Start session to get user data (e.g., user ID)
-session_start();
 include 'navbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; 

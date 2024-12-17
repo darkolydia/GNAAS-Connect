@@ -2,7 +2,7 @@
 include 'navbar.php';
 include 'db_connection.php'; // Database connection
 
-session_start(); // Start the session
+; // Start the session
 
 $error_message = ''; // Error message for login failure
 
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 include 'navbar.php';
 include 'db_connection.php'; // Database connection
 
-session_start(); // Start the session
+; // Start the session
 
 $error_message = ''; // Error message for login failure
 

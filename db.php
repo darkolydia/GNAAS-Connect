@@ -17,7 +17,7 @@ if ($conn->connect_error) {
 
 
 <?php
-session_start();
+
 
 include 'Lnavbar.php';
 include 'db_connection.php'; // Database connection
@@ -217,7 +217,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 <?php
-session_start();
+;
 
 include 'Lnavbar.php';
 include 'db_connection.php'; // Database connection

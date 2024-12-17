@@ -7,7 +7,6 @@ error_reporting(E_ALL);
 include 'Lnavbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
-session_start();
 
 // Initialize variables
 $error_message = '';

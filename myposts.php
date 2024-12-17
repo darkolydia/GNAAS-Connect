@@ -4,8 +4,6 @@ include 'navbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
 
-// Start session to access user data (assuming session is used for login)
-session_start();
 
 // Check if the user is logged in by verifying the session
 if (!isset($_SESSION['user_id'])) {
