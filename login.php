@@ -1,3 +1,50 @@
+<?php
+// Start the session
+session_start();
+
+// Include database connection file (you need to create db_connection.php with your DB settings)
+include 'db_connection.php';
+
+$error_message = ''; // Initialize error message
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Check if email and password are provided
+    if (isset($_POST['email']) && isset($_POST['password'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Query to find the user with the given email
+        $query = "SELECT userID, firstName, lastName, passwordHash FROM users WHERE email = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // Check if a user was found with this email
+        if ($result->num_rows > 0) {
+            $user = $result->fetch_assoc();
+
+            // Verify password using password_verify()
+            if (password_verify($password, $user['passwordHash'])) {
+                // Password is correct, store the user data in session
+                $_SESSION['user_id'] = $user['userID'];
+                $_SESSION['user_name'] = $user['firstName'] . ' ' . $user['lastName'];
+
+                // Redirect to homepage after successful login
+                header("Location: homepage.php");
+                exit(); // Stop script execution
+            } else {
+                $error_message = "Incorrect password.";
+            }
+        } else {
+            $error_message = "Email not found.";
+        }
+    } else {
+        $error_message = "Please enter both email and password.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +78,10 @@
     <main class="form-page d-flex justify-content-center align-items-center vh-100">
         <div class="form-container">
             <h2 class="text-center mb-4">Login</h2>
-            <form id="loginForm" action="login.php" method="post" onsubmit="return validateForm(event)">
+            <?php if (!empty($error_message)): ?>
+                <p class="error-message text-center"><?php echo $error_message; ?></p>
+            <?php endif; ?>
+            <form id="loginForm" action="login.php" method="post">
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Enter your Ashesi email" required>
