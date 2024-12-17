@@ -7,6 +7,7 @@ include 'Lnavbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
 
+session_start(); // Start the session
 
 // Check if the user is logged in by verifying the session
 if (!isset($_SESSION['user_id'])) {

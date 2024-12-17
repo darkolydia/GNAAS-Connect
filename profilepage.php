@@ -1,9 +1,10 @@
 <?php
 // Include necessary files
-include 'navbar.php';
+include 'Lnavbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
 
+session_start(); // Start the session
 
 
 // Check if user is logged in (user_id should exist in the session)

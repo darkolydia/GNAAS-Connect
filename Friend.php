@@ -3,6 +3,8 @@ include 'navbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
 
+session_start(); // Start the session
+
 // Get the current user ID from the session
 $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 

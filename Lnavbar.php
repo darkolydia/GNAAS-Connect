@@ -1,17 +1,9 @@
-<?php
-// Start the session to check login status
-session_start();
-?>
 
 <nav class="top-nav">
     <div class="nav-left">
-        <a href="homepage.php" class="nav-logo">GNAAS Connect</a>
+        <a class="nav-logo">GNAAS Connect</a>
     </div>
     <div class="nav-right">
-        <?php if (!isset($_SESSION['user_id'])): ?>
-            <!-- Show Sign Up link if user is not logged in -->
-            <a href="signup.php" class="nav-link">Sign Up</a>
-        <?php else: ?>
             <!-- Show Profile dropdown if user is logged in -->
             <div class="profile-container">
                 <a href="#" class="nav-link profile-icon">
@@ -22,7 +14,7 @@ session_start();
                     <a href="logout.php" class="dropdown-item">Sign Out</a>
                 </div>
             </div>
-        <?php endif; ?>
+        <a href="notifications.php" class="nav-link">Notifications</a>
         <a href="about.php" class="nav-link">About</a>
         <a href="contact.php" class="nav-link">Contact</a>
     </div>

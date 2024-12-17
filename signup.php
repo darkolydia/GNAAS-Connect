@@ -1,7 +1,7 @@
 <?php
 
 
-include 'Lnavbar.php';
+include 'Nnavbar.php';
 include 'db_connection.php'; // Database connection
 
 $error_message = '';

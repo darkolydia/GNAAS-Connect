@@ -1,7 +1,9 @@
 <?php
-include 'navbar.php';
+include 'Lnavbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
+
+session_start(); // Start the session
 
 $error_message = '';
 $success_message = '';
