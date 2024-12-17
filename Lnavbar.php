@@ -4,16 +4,7 @@
         <a class="nav-logo">GNAAS Connect</a>
     </div>
     <div class="nav-right">
-            <!-- Show Profile dropdown if user is logged in -->
-            <div class="profile-container">
-                <a href="#" class="nav-link profile-icon">
-                    Profile
-                </a>
-                <div class="dropdown-menu">
-                    <a href="profile.php" class="dropdown-item">View Profile</a>
-                    <a href="logout.php" class="dropdown-item">Sign Out</a>
-                </div>
-            </div>
+        <a href="logout.php" class="dropdown-item">Sign Out</a>
         <a href="notifications.php" class="nav-link">Notifications</a>
         <a href="about.php" class="nav-link">About</a>
         <a href="contact.php" class="nav-link">Contact</a>
