@@ -1,4 +1,7 @@
-
+<?php
+// Start the session to check login status
+session_start();
+?>
 
 <nav class="top-nav">
     <div class="nav-left">
