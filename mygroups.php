@@ -13,9 +13,9 @@ $user_id = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 // Fetch groups the user is a part of
 $user_groups_query = "
     SELECT gi.groupID, gi.groupName, gi.groupDescription, gi.numLimit,
-           (SELECT COUNT(*) FROM isAmember WHERE groupId = gi.groupID) as member_count
+           (SELECT COUNT(*) FROM isamember WHERE groupId = gi.groupID) as member_count
     FROM groupinfo gi
-    JOIN isAmember ia ON gi.groupID = ia.groupId
+    JOIN isamember ia ON gi.groupID = ia.groupId
     WHERE ia.memberId = ?
 ";
 $stmt = $conn->prepare($user_groups_query);
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($group_id) {
         // Leave group logic
-        $leave_query = "DELETE FROM isAmember WHERE groupId = ? AND memberId = ?";
+        $leave_query = "DELETE FROM isamember WHERE groupId = ? AND memberId = ?";
         $stmt = $conn->prepare($leave_query);
         $stmt->bind_param("ii", $group_id, $user_id);
 

@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // $memberType = 'student'; // Assuming the user is a student. Change if needed
 
                 // Insert the user as a member of the newly created group
-                $insert_member_query = "INSERT INTO isAmember (groupId, memberId, groupRole) 
+                $insert_member_query = "INSERT INTO isamember (groupId, memberId, groupRole) 
                                          VALUES (?, ?, ?)";
                 $stmt_member = $conn->prepare($insert_member_query);
                 $stmt_member->bind_param("iis", $groupID, $userID, $groupRole);

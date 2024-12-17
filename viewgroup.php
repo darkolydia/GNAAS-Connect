@@ -29,7 +29,7 @@ $group_result = $stmt->get_result();
                 <?php while ($group = $group_result->fetch_assoc()): ?>
                     <?php
                     // Fetch the member count for each group
-                    $member_query = "SELECT COUNT(*) as member_count FROM isAmember WHERE groupId = ?";
+                    $member_query = "SELECT COUNT(*) as member_count FROM isamember WHERE groupId = ?";
                     $stmt = $conn->prepare($member_query);
                     $stmt->bind_param("i", $group['groupID']);
                     $stmt->execute();

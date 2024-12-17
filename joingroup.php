@@ -15,7 +15,7 @@ $group_query = "
     FROM groupinfo 
     WHERE groupID NOT IN (
         SELECT groupID 
-        FROM isAmember 
+        FROM isamember 
         WHERE memberId = ?
     )
 ";
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id) {
         $group = $group_result->fetch_assoc();
         
         // Fetch group member count
-        $member_query = "SELECT COUNT(*) as member_count FROM isAmember WHERE groupID = ?";
+        $member_query = "SELECT COUNT(*) as member_count FROM isamember WHERE groupID = ?";
         $stmt = $conn->prepare($member_query);
         $stmt->bind_param("i", $group_id);
         $stmt->execute();
@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id) {
 
         if ($members['member_count'] < $group['numLimit']) {
             // Check if the user is already a member
-            $check_query = "SELECT * FROM isAmember WHERE groupID = ? AND memberId = ?";
+            $check_query = "SELECT * FROM isamember WHERE groupID = ? AND memberId = ?";
             $stmt = $conn->prepare($check_query);
             $stmt->bind_param("ii", $group_id, $user_id);
             $stmt->execute();
@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id) {
 
             if ($check_result->num_rows === 0) {
                 // Add user to the group
-                $insert_query = "INSERT INTO isAmember (groupID, memberId, groupRole, membertype) VALUES (?, ?, 'Member', 'student')";
+                $insert_query = "INSERT INTO isamember (groupID, memberId, groupRole, membertype) VALUES (?, ?, 'Member', 'student')";
                 $stmt = $conn->prepare($insert_query);
                 $stmt->bind_param("ii", $group_id, $user_id);
 
@@ -101,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $user_id) {
                                 <p><strong>Members:</strong> 
                                     <?php
                                     $group_id = $group['groupID'];
-                                    $member_query = "SELECT COUNT(*) as member_count FROM isAmember WHERE groupID = ?";
+                                    $member_query = "SELECT COUNT(*) as member_count FROM isamember WHERE groupID = ?";
                                     $stmt = $conn->prepare($member_query);
                                     $stmt->bind_param("i", $group_id);
                                     $stmt->execute();
