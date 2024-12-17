@@ -1,5 +1,10 @@
 <?php
-include 'navbar.php';
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+
+include 'Lnavbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
 session_start();
