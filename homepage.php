@@ -1,5 +1,5 @@
 <?php
-include 'Lnavbar.php';
+include 'navbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; // Database connection
 session_start();
