@@ -1,5 +1,5 @@
 <?php
-include 'Navbar.php';
+include 'Lnavbar.php';
 include 'sidebar.php';
 // Include necessary files
 include 'db_connection.php';

@@ -3,7 +3,7 @@
 // Start session to get user data (e.g., user ID)
 session_start(); // Start the session
 
-include 'navbar.php';
+include 'Lnavbar.php';
 include 'sidebar.php';
 include 'db_connection.php'; 
 
